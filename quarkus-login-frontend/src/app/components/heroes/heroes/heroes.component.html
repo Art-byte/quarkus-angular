@@ -1,0 +1,40 @@
+<div class="container">
+    <h2>My Heroes</h2>
+    <form class="form-inline">
+      <div class="form-group mx-sm-3 mb-2">
+        <input type="input" class="form-control" #heroName placeholder="Hero Name">
+      </div>
+    
+      <button class="btn btn-primary mb-2" (click)="add(heroName.value); heroName.value=''">Add</button>
+    </form>  
+
+  
+    <table class="table table-striped">
+      <thead>
+          <tr>
+              <th style="width: 10%">Id</th>
+              <th style="width: 30%">Name</th>
+              <th style="width: 10%"></th>
+              <th style="width: 10%"></th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let hero of heroes">
+              <td>{{hero.id}}</td>
+              <td>{{hero.name}}</td>
+              <td style="white-space: nowrap">
+                  <a routerLink="/detail/{{hero.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>  
+              </td>
+              <td>
+                <button (click)="delete(hero)" class="btn btn-sm btn-danger" >Delete</button>
+              </td>
+          </tr>
+          <tr *ngIf="!heroes">
+              <td colspan="4" class="text-center">
+                  <span class="spinner-border spinner-border-lg align-center"></span>
+              </td>
+          </tr>
+        </tbody>
+    </table>
+
+  </div>
